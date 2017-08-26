@@ -24,52 +24,15 @@
         <!-- using computed methods it is able to return it as one variable -->
         <h3>{{ fullName }}</h3>
 
-        <boom msg="Pass down from test"></boom>
+        <boom v-bind:msg="title"></boom>
+
+        <!-- mouseover -->
+        <div v-on:mouseover="onHover(true)" v-on:mouseleave="onHover(false)">Toggler</div>
+        <div v-show="showBoom">toggle from showboom</div>
     </div>
 </template>
 
-<script>
-    import boom from "./boom";
-
-    export default {
-        name: "test",
-        components: {
-            boom
-        },
-        data() {
-            return {
-                title: "Hello Awesome me",
-                user: {
-                    firstName: "Aaron",
-                    lastName: "Lam"
-                },
-                show: true,
-                items: [
-                    { title: "item1" },
-                    { title: "item2" },
-                    { title: "item3" }
-                ]
-            };
-        },
-        methods: {
-            onClick(val) {
-                console.log(val);
-            },
-            pressKey(event) {
-                console.log(event.target.value);
-            },
-            onEnter() {
-                console.log("you hit enter");
-            }
-        },
-        computed: {
-            fullName() {
-                return this.user.firstName + this.user.lastName;
-            }
-        }
-    };
-</script>
-
+<script src="@/controller/test.js"></script>
 <style scoped>
     .click-button {
         margin-top: 10px;
