@@ -1,10 +1,30 @@
 const express = require("express");
+const Vue = require("vue");
+const fs = require("fs");
+const renderer = require("vue-server-renderer").createRenderer();
+
+const mainHTML = fs.readFileSync("./public/main.html", "utf-8");
+const loaderHTML = fs.readFileSync("./assets/loader.html", "utf-8");
 
 const PORT = process.env.PORT || 8080;
-const app = express();
+const server = express();
 
-app.use(express.static(`${__dirname}/public`));
+server.use(express.static(`${__dirname}/public`));
 
-app.get("*", (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+server.get("*", (req, res) => {
+    const app = new Vue({
+        data: {
+            url: req.url
+        },
+        template: loaderHTML
+    });
+    renderer.renderToString(app, (err, html) => {
+        if (err) {
+            res.status(500).end("Internal Server Error");
+            return;
+        }
+        res.end(mainHTML.replace(`<div id=app></div>`, `<div id="app">${html}</div>`));
+    });
+});
 
-app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`)); // eslint-disable-line
+server.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`)); // eslint-disable-line
