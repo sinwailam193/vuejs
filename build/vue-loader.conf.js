@@ -14,5 +14,6 @@ module.exports = {
         source: 'src',
         img: 'src',
         image: 'xlink:href'
-    }
+    },
+    postcss: [require("postcss-smart-import"), require("precss"), require("autoprefixer")]
 }
