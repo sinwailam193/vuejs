@@ -19,14 +19,3 @@
 </template>
 
 <script type="text/javascript" src="@/controllers/users.js"></script>
-<style scoped="">
-    input[type=text] {
-        display: block;
-        margin-bottom: 10px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .contacted {
-        text-decoration: line-through;
-    }
-</style>

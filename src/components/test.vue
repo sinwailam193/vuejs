@@ -33,11 +33,3 @@
 </template>
 
 <script src="@/controllers/test.js"></script>
-<style scoped>
-    .click-button {
-        margin-top: 10px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
