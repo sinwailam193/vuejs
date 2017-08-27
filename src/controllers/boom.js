@@ -4,7 +4,6 @@ import Component from "vue-class-component";
 @Component({
     props: {
         msg: {
-            default: "Foobar",
             type: String
         }
     }

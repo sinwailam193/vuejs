@@ -32,7 +32,7 @@
     </div>
 </template>
 
-<script src="@/controller/test.js"></script>
+<script src="@/controllers/test.js"></script>
 <style scoped>
     .click-button {
         margin-top: 10px;

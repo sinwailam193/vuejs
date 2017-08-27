@@ -37,6 +37,7 @@ export default class Test extends Vue {
         this.showBoom = val;
     }
 
+    // computed methods
     get fullName() {
         return this.user.firstName + this.user.lastName;
     }

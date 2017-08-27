@@ -2,4 +2,4 @@
     <p>This is {{ msg }}</p>
 </template>
 
-<script src="@/controller/boom.js"></script>
+<script src="@/controllers/boom.js"></script>
