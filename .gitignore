@@ -59,7 +59,6 @@ typings/
 
 .DS_Store
 dist/
-public/
 
 # Editor directories and files
 .idea
@@ -67,3 +66,5 @@ public/
 *.ntvs*
 *.njsproj
 *.sln
+
+package-lock.json
