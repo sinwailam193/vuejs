@@ -109,7 +109,7 @@ function render(req, res) {
     }
 
     const context = {
-        title: "Vue", // default title
+        title: "Vuex", // default title
         url: req.url
     };
     return renderer.renderToString(context, (err, html) => {

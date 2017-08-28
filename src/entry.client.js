@@ -1,6 +1,27 @@
+import Vue from "vue";
 import createApp from "./main";
 
-const { app, router } = createApp();
+const { app, router, store } = createApp();
+
+// a global mixin that calls `asyncData` when a route component's params change
+Vue.mixin({
+    beforeRouteUpdate(to, from, next) {
+        const { asyncData } = this.$options;
+        if (asyncData) {
+            asyncData({
+                store: this.$store,
+                route: to
+            }).then(next).catch(next);
+        } else {
+            next();
+        }
+    }
+});
+
+const initialState = window.__INITIAL_STATE__;
+if (initialState) {
+    store.replaceState(initialState);
+}
 
 router.onReady(() => {
     router.beforeResolve((to, from, next) => {
@@ -13,7 +34,7 @@ router.onReady(() => {
             return next();
         }
 
-        return Promise.all(asyncDataHooks.map(hook => hook({ route: to })))
+        return Promise.all(asyncDataHooks.map(hook => hook({ store, route: to })))
       .then(() => {
           next();
       })
@@ -21,3 +42,8 @@ router.onReady(() => {
     });
     app.$mount("#app");
 });
+
+// service worker
+if (location.protocol === "https:" && navigator.serviceWorker) {
+    navigator.serviceWorker.register("/service-worker.js");
+}

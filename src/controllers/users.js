@@ -1,24 +1,26 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
-@Component
+@Component({
+    title: "Users"
+})
 export default class Users extends Vue {
     newUser = {
         name: "",
         email: ""
     };
-    users = [];
+
+    get page() {
+        return this.$store.getters.USERS_VIEW;
+    }
 
     created() {
-        this.$http.get("https://jsonplaceholder.typicode.com/users")
-            .then(res => {
-                this.users = res.data.map(val => ({ ...val, contacted: false }));
-            });
+        this.$store.dispatch("GET_USERS");
     }
 
     onSubmit(event) {
         event.preventDefault();
-        const { newUser: { name, email }, users } = this;
+        const { newUser: { name, email }, page: { users } } = this;
         if (name && email) {
             users.push({
                 name,
@@ -30,7 +32,11 @@ export default class Users extends Vue {
     }
 
     onClick(index) {
-        const { users } = this;
-        users.splice(index, 1);
+        const { users, isToggle } = this.page;
+        if (index === "Toggle") {
+            this.$store.commit("CHANGE_STATE", { isToggle: !isToggle });
+        } else {
+            users.splice(index, 1);
+        }
     }
 }
