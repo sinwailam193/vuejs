@@ -3,13 +3,13 @@
         <h1 class="text-center">Word Translator</h1>
         <h5>Powerd By Vue</h5>
         <translateForm
-            v-bind:langs="page.langs"
-            v-bind:selectedLang="page.selectedLang"
+            :langs="page.langs"
+            :selectedLang="page.selectedLang"
             v-on:formSubmit="formSubmit"
         ></translateForm>
         <translateOutput
-            v-bind:loading="page.loading"
-            v-bind:translation="page.translation"
+            :loading="page.loading"
+            :translation="page.translation"
         ></translateOutput>
     </div>
 </template>
