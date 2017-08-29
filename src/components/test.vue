@@ -12,10 +12,10 @@
 
         <!-- input binding -->
         <input type="text" v-model="title" />
-        <button class="click-button" type="button" v-on:click="onClick(title)">Click Me</button>
+        <button class="click-button" type="button" @click="onClick(title)">Click Me</button>
 
         <!-- for hitting button and pressing enter -->
-        <input type="text" v-on:keyup="pressKey" v-on:keyup.enter="onEnter">
+        <input type="text" @keyup="pressKey" @keyup.enter="onEnter">
 
         <hr />
         <label>First Name</label><input type="text" v-model="user.firstName">
@@ -27,7 +27,7 @@
         <boom v-bind:msg="title"></boom>
 
         <!-- mouseover -->
-        <div v-on:mouseover="onHover(true)" v-on:mouseleave="onHover(false)">Toggler</div>
+        <div @mouseover="onHover(true)" @mouseleave="onHover(false)">Toggler</div>
         <div v-show="showBoom">toggle from showboom</div>
     </div>
 </template>
