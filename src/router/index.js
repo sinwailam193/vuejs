@@ -1,8 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import test from "@/components/test";
-import users from "@/components/users";
-import notFound from "@/components/pageNotFound";
+import notFound from "@/components/views/pageNotFound";
+import mainPage from "@/components/views/mainPage";
 
 Vue.use(Router);
 
@@ -11,17 +10,12 @@ export default new Router({
     routes: [
         {
             path: "/",
-            name: "users",
-            component: users
-        },
-        {
-            path: "/basics",
-            name: "test",
-            component: test
+            name: "mainPage",
+            component: mainPage
         },
         {
             path: "*",
-            name: "NotFound",
+            name: "notFound",
             component: notFound
         }
     ],
