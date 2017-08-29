@@ -1,9 +1,11 @@
 export default {
-    USERS_VIEW(state) {
-        const { isToggle, users } = state;
+    MAIN_VIEW(state) {
+        const { translation, langs, loading, selectedLang } = state;
         return {
-            isToggle,
-            users
+            translation,
+            langs,
+            loading,
+            selectedLang
         };
     }
 };

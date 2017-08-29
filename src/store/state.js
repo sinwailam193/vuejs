@@ -1,4 +1,6 @@
 export default {
-    isToggle: false,
-    users: []
+    translation: "",
+    langs: [],
+    selectedLang: "en",
+    loading: false
 };
