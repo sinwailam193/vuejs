@@ -8,13 +8,16 @@
         </form>
         <hr />
         <ul>
-            <li v-for="(user, index) in users">
+            <li v-for="(user, index) in page.users">
                 <input type="checkbox" class="toggle" v-model="user.contacted">
                 <!-- if user's contacted is true, then it will get a class contcted -->
                 <span :class="{contacted: user.contacted}">{{ user.name }}: {{ user.email }}</span>
                 <button v-on:click="onClick(index)">delete</button>
             </li>
         </ul>
+        <hr />
+        <button type="button" v-on:click="onClick('Toggle')">Toggle Button</button>
+        <p v-show="page.isToggle">Paragrah being shown</p>
     </div>
 </template>
 

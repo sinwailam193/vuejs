@@ -1,7 +1,7 @@
 import createApp from "./main";
 
 export default context => new Promise((resolve, reject) => {
-    const { app, router } = createApp();
+    const { app, router, store } = createApp();
 
     const { url } = context;
     const fullPath = router.resolve(url).route.fullPath;
@@ -18,8 +18,10 @@ export default context => new Promise((resolve, reject) => {
             reject({ code: 404 });
         }
         Promise.all(matchedComponents.map(({ asyncData }) => asyncData && asyncData({
+            store,
             route: router.currentRoute
         }))).then(() => {
+            context.state = store.state;
             resolve(app);
         }).catch(reject);
     }, reject);

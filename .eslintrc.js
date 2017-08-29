@@ -48,6 +48,8 @@ module.exports = {
     "import/prefer-default-export": 0,
     "global-require": 0,
     "class-methods-use-this": 0,
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state", "context"] }],
+    "no-underscore-dangle": ["error", { "allow": ["__INITIAL_STATE__"] }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }

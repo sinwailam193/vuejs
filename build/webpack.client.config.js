@@ -12,7 +12,9 @@ const config = merge(base, {
         "axios",
         "vue",
         "vue-class-component",
-        "vue-router"
+        "vue-router",
+        "vuex",
+        "vuex-router-sync"
     ]
   },
   resolve: {
