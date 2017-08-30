@@ -7,6 +7,6 @@ export default {
         state.loading = loading;
     },
     MUTATE_LANGS(state, langs) {
-        state.langs = Object.keys(langs).map(key => ({ key, val: langs[key] }));
+        state.langs = langs;
     }
 };

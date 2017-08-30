@@ -9,7 +9,7 @@ export default {
         const translation = await axios.get(`${YANDEX_API}/translate`, {
             params: {
                 key: YANDEX_API_KEY,
-                lang: `en-${selectedLang}`,
+                lang: `en-${selectedLang || "en"}`,
                 text: userInput || ""
             }
         }).then(res => (res.data && res.data.text.length ? res.data.text[0] : ""));

@@ -1,10 +1,10 @@
 <template>
     <div class="translate-form row">
         <div class="col-md-6 middle">
-            <form class="well form-inline transform" v-on:submit="onSubmit">
+            <form class="well form-inline transform" @submit="onSubmit">
                 <input class="form-control margin-right-5" type="text" v-model="userInput" placeholder="Enter a word" />
-                <select class="form-control margin-right-5" v-on:change="onChange" :value="selectedLang">
-                    <option v-for="lang in langs" :value="lang.key">{{ lang.val }}</option>
+                <select class="form-control margin-right-5" @change="onChange" :value="selectedLang">
+                    <option v-for="(val, key) in langs" :value="key">{{ val }}</option>
                 </select>
                 <input class="btn btn-primary" type="submit" value="Translate">
             </form>

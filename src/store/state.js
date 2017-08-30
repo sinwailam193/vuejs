@@ -1,6 +1,6 @@
 export default {
     translation: "",
-    langs: [],
+    langs: {},
     selectedLang: "en",
     loading: false
 };

@@ -5,7 +5,7 @@
         <translateForm
             :langs="page.langs"
             :selectedLang="page.selectedLang"
-            v-on:formSubmit="formSubmit"
+            @formSubmit="formSubmit"
         ></translateForm>
         <translateOutput
             :loading="page.loading"
