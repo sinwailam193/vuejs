@@ -62,7 +62,6 @@ const serve = (pathing, cache) => express.static(resolve(pathing), {
 app.use(compression({ threshold: 0 }));
 app.use(favicon(`${__dirname}/static/favicon.ico`));
 app.use("/dist", serve(`${__dirname}/dist`, true));
-app.use("/manifest.json", serve(`${__dirname}/manifest.json`, true));
 app.use("/service-worker.js", serve(`${__dirname}/dist/service-worker.js`));
 
 // 1-second microcache.
