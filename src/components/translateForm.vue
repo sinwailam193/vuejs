@@ -4,7 +4,7 @@
             <form class="well form-inline transform" @submit="onSubmit">
                 <input class="form-control margin-right-5" type="text" v-model="userInput" placeholder="Enter a word" />
                 <select class="form-control margin-right-5" @change="onChange" :value="selectedLang">
-                    <option v-for="(val, key) in langs" :value="key">{{ val }}</option>
+                    <option v-for="(val, key) in langs" :value="key" :selected="key === selectedLang">{{ val }}</option>
                 </select>
                 <input class="btn btn-primary" type="submit" value="Translate">
             </form>

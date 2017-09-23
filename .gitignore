@@ -68,4 +68,4 @@ dist/
 *.sln
 
 package-lock.json
-config
+config.js
