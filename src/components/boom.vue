@@ -6,5 +6,5 @@
     export default {
         name: "boom",
         props: ["msg"]
-    }
+    };
 </script>

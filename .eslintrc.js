@@ -1,5 +1,3 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
   parser: 'babel-eslint',
@@ -20,7 +18,8 @@ module.exports = {
       'webpack': {
         'config': 'build/webpack.base.config.js'
       }
-    }
+  },
+    "html/html-extensions": [".html", ".vue"]
   },
   // add your custom rules here
   'rules': {
