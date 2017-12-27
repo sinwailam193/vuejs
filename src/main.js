@@ -14,12 +14,14 @@ Vue.use(Vuetify, {
 });
 Vue.mixin(titleMixin);
 
-sync(store, router);
+export default function createApp() {
+    sync(store, router);
 
-const app = new Vue({
-    router,
-    store,
-    render: h => h(App)
-});
+    const app = new Vue({
+        router,
+        store,
+        render: h => h(App)
+    });
 
-export default { app, router, store };
+    return { app, router, store };
+}

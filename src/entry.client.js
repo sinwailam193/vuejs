@@ -1,6 +1,6 @@
 import Vue from "vue";
-import axios from "axios";
 import createApp from "./main";
+import api from "./utils/axiosInstance";
 
 Vue.config.productionTip = false;
 if (process.env.NODE_ENV === "production") {
@@ -9,8 +9,7 @@ if (process.env.NODE_ENV === "production") {
     Vue.config.silent = true;
 }
 
-const { app, router, store } = createApp;
-export const axiosBrowser = axios.create({});
+const { app, router, store } = createApp();
 
 // a global mixin that calls `asyncData` when a route component's params change
 Vue.mixin({
@@ -20,7 +19,7 @@ Vue.mixin({
             asyncData({
                 store: this.$store,
                 route: to,
-                axiosInstance: axiosBrowser
+                axiosInstance: api()
             }).then(next).catch(next);
         } else {
             next();

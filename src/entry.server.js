@@ -1,13 +1,11 @@
-import axios from "axios";
+import api from "./utils/axiosInstance";
 import createApp from "./main";
 
 export default context => new Promise((resolve, reject) => {
-    const { app, router, store } = createApp;
-    const { url, cookie, origin } = context;
+    const { app, router, store } = createApp();
+    const { url } = context;
 
-    const axiosInstance = axios.create({
-        headers: { cookie: cookie || "", origin }
-    });
+    const axiosInstance = api(context);
 
     const fullPath = router.resolve(url).route.fullPath;
 

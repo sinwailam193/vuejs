@@ -12,17 +12,20 @@
                 <input type="checkbox" class="toggle" v-model="user.contacted">
                 <!-- if user's contacted is true, then it will get a class contcted -->
                 <span :class="{contacted: user.contacted}">{{ user.name }}: {{ user.email }}</span>
-                <button @click="onClick(index)">delete</button>
+                <button @click="onClick" :name="index">delete</button>
             </li>
         </ul>
         <hr />
-        <button type="button" @click="onClick('Toggle')">Toggle Button</button>
+        <button type="button" @click="onClick" name="toggle">Toggle Button</button>
         <p v-show="page.isToggle">Paragrah being shown</p>
         <v-btn color="primary">Primary</v-btn>
     </div>
 </template>
 
 <script>
+    import { GET_USERS } from "@/store/users/actions";
+    import { CHANGE_STATE } from "@/store/users/mutations";
+
     export default {
         name: "users",
         data() {
@@ -34,7 +37,7 @@
             };
         },
         asyncData({ store, axiosInstance }) {
-            return store.dispatch("GET_USERS", { axiosInstance });
+            return store.dispatch(GET_USERS, { axiosInstance });
         },
         computed: {
             page() {
@@ -54,12 +57,12 @@
                     this.newUser = { name: "", email: "" };
                 }
             },
-            onClick(index) {
+            onClick({ target: { name } }) {
                 const { users, isToggle } = this.page;
-                if (index === "Toggle") {
-                    this.$store.commit("CHANGE_STATE", { isToggle: !isToggle });
+                if (name === "toggle") {
+                    this.$store.commit(CHANGE_STATE, { isToggle: !isToggle });
                 } else {
-                    users.splice(index, 1);
+                    users.splice(parseInt(name, 10), 1);
                 }
             }
         }
