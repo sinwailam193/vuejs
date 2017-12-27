@@ -11,7 +11,6 @@ const config = merge(base, {
     vendor: [
         "axios",
         "vue",
-        "vue-class-component",
         "vue-router",
         "vuex",
         "vuex-router-sync",

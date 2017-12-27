@@ -6,6 +6,8 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production'
 const directory = __dirname.replace("build", "");
 
+const cssExtract = new ExtractTextPlugin('main.[chunkhash].css');
+
 module.exports = {
   devtool: isProd
     ? false
@@ -47,7 +49,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: isProd
-          ? ExtractTextPlugin.extract({
+          ? cssExtract.extract({
               use: 'css-loader?minimize',
               fallback: 'vue-style-loader'
             })
@@ -64,9 +66,7 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
           compress: { warnings: false }
         }),
-        new ExtractTextPlugin({
-          filename: 'main.[chunkhash].css'
-        })
+        cssExtract
       ]
     : [
         new FriendlyErrorsPlugin()
