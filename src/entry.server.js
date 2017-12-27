@@ -1,9 +1,8 @@
 import axios from "axios";
 import createApp from "./main";
 
-
 export default context => new Promise((resolve, reject) => {
-    const { app, router, store } = createApp();
+    const { app, router, store } = createApp;
     const { url, cookie, origin } = context;
 
     const axiosInstance = axios.create({

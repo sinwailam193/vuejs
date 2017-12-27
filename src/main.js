@@ -13,16 +13,13 @@ Vue.use(Vuetify, {
     }
 });
 Vue.mixin(titleMixin);
-Vue.config.productionTip = false;
 
-export default function createApp() {
-    sync(store, router);
+sync(store, router);
 
-    const app = new Vue({
-        router,
-        store,
-        render: h => h(App)
-    });
+const app = new Vue({
+    router,
+    store,
+    render: h => h(App)
+});
 
-    return { app, router, store };
-}
+export default { app, router, store };

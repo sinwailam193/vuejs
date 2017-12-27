@@ -1,8 +1,8 @@
-import { axiosBrowser } from "../entry.client";
+// import { axiosBrowser } from "@/entry.client";
 
 export default {
     async GET_USERS({ commit }, { axiosInstance }) {
-        const api = axiosInstance || axiosBrowser;
+        const api = axiosInstance;
         // commit for triggering mutations
         // dispatch for triggering other actions
         // state is grabing the state of the store

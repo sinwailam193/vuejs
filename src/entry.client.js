@@ -2,7 +2,15 @@ import Vue from "vue";
 import axios from "axios";
 import createApp from "./main";
 
-const { app, router, store } = createApp();
+Vue.config.productionTip = false;
+if (process.env.NODE_ENV === "production") {
+    Vue.config.devtools = false;
+    Vue.config.debug = false;
+    Vue.config.silent = true;
+}
+
+const { app, router, store } = createApp;
+export const axiosBrowser = axios.create({});
 
 // a global mixin that calls `asyncData` when a route component's params change
 Vue.mixin({
@@ -11,7 +19,8 @@ Vue.mixin({
         if (asyncData) {
             asyncData({
                 store: this.$store,
-                route: to
+                route: to,
+                axiosInstance: axiosBrowser
             }).then(next).catch(next);
         } else {
             next();
@@ -23,8 +32,6 @@ const initialState = window.__INITIAL_STATE__;
 if (initialState) {
     store.replaceState(initialState);
 }
-
-export const axiosBrowser = axios.create({});
 
 router.onReady(() => {
     router.beforeResolve((to, from, next) => {
