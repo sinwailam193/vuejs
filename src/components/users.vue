@@ -12,12 +12,13 @@
                 <input type="checkbox" class="toggle" v-model="user.contacted">
                 <!-- if user's contacted is true, then it will get a class contcted -->
                 <span :class="{contacted: user.contacted}">{{ user.name }}: {{ user.email }}</span>
-                <button v-on:click="onClick(index)">delete</button>
+                <button @click="onClick(index)">delete</button>
             </li>
         </ul>
         <hr />
-        <button type="button" v-on:click="onClick('Toggle')">Toggle Button</button>
+        <button type="button" @click="onClick('Toggle')">Toggle Button</button>
         <p v-show="page.isToggle">Paragrah being shown</p>
+        <v-btn color="primary">Primary</v-btn>
     </div>
 </template>
 
@@ -38,8 +39,8 @@
             return this.$store.getters.USERS_VIEW;
         }
 
-        created() {
-            this.$store.dispatch("GET_USERS");
+        static asyncData({ store, axiosInstance }) {
+            return store.dispatch("GET_USERS", { axiosInstance });
         }
 
         onSubmit(event) {

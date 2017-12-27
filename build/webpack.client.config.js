@@ -14,7 +14,8 @@ const config = merge(base, {
         "vue-class-component",
         "vue-router",
         "vuex",
-        "vuex-router-sync"
+        "vuex-router-sync",
+        "vuetify"
     ]
   },
   resolve: {

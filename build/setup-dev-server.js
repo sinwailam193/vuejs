@@ -20,7 +20,7 @@ module.exports = function setupDevServer (app, cb) {
   }
 
   // modify client config to work with hot middleware
-  clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
+  clientConfig.entry.app = ['webpack-hot-middleware/client?reload=true&noInfo=true&quiet=true', clientConfig.entry.app]
   clientConfig.output.filename = '[name].js'
   clientConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
@@ -31,7 +31,9 @@ module.exports = function setupDevServer (app, cb) {
   const clientCompiler = webpack(clientConfig)
   const devMiddleware = require('webpack-dev-middleware')(clientCompiler, {
     publicPath: clientConfig.output.publicPath,
-    noInfo: true
+    noInfo: true,
+    quiet: true,
+    stats: "minimal"
   })
   app.use(devMiddleware)
   clientCompiler.plugin('done', stats => {

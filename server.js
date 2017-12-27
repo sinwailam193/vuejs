@@ -89,7 +89,7 @@ function render(req, res) {
         } else if (err.code === 404) {
             res.status(404).end("404 | Page Not Found");
         } else {
-      // Render Error Page or Redirect
+            // Render Error Page or Redirect
             res.status(500).end("500 | Internal Server Error");
             console.error(`error during render : ${req.url}`);
             console.error(err.stack);
@@ -100,17 +100,17 @@ function render(req, res) {
     if (cacheable) {
         const hit = microCache.get(req.url);
         if (hit) {
-            if (!isProd) {
-                console.log(`cache hit!`);
-            }
             return res.end(hit);
         }
     }
 
     const context = {
         title: "Vuex", // default title
-        url: req.url
+        url: req.url,
+        cookie: req.get("cookie"),
+        origin: `${req.protocol}://${req.get("host")}`
     };
+
     return renderer.renderToString(context, (err, html) => {
         if (err) {
             handleError(err);

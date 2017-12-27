@@ -1,5 +1,8 @@
 <template lang="html">
-    <h1>Oops 404 Not Found</h1>
+    <div>
+        <h1>Oops 404 Not Found</h1>
+        <v-btn color="primary">Primary</v-btn>
+    </div>
 </template>
 
 <script>

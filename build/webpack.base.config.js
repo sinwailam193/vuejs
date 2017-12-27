@@ -65,10 +65,10 @@ module.exports = {
           compress: { warnings: false }
         }),
         new ExtractTextPlugin({
-          filename: 'common.[chunkhash].css'
+          filename: 'main.[chunkhash].css'
         })
       ]
     : [
         new FriendlyErrorsPlugin()
-      ]
+    ]
 }

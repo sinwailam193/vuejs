@@ -1,9 +1,15 @@
+import axios from "axios";
 import createApp from "./main";
+
 
 export default context => new Promise((resolve, reject) => {
     const { app, router, store } = createApp();
+    const { url, cookie, origin } = context;
 
-    const { url } = context;
+    const axiosInstance = axios.create({
+        headers: { cookie: cookie || "", origin }
+    });
+
     const fullPath = router.resolve(url).route.fullPath;
 
     if (fullPath !== url) {
@@ -19,7 +25,8 @@ export default context => new Promise((resolve, reject) => {
         }
         Promise.all(matchedComponents.map(({ asyncData }) => asyncData && asyncData({
             store,
-            route: router.currentRoute
+            route: router.currentRoute,
+            axiosInstance
         }))).then(() => {
             context.state = store.state;
             resolve(app);
