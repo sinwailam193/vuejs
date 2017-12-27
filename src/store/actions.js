@@ -1,4 +1,4 @@
-import { axiosBrowser } from "../main";
+import { axiosBrowser } from "../entry.client";
 
 export default {
     async GET_USERS({ commit }, { axiosInstance }) {

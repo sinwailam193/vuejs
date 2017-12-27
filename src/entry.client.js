@@ -1,4 +1,5 @@
 import Vue from "vue";
+import axios from "axios";
 import createApp from "./main";
 
 const { app, router, store } = createApp();
@@ -22,6 +23,8 @@ const initialState = window.__INITIAL_STATE__;
 if (initialState) {
     store.replaceState(initialState);
 }
+
+export const axiosBrowser = axios.create({});
 
 router.onReady(() => {
     router.beforeResolve((to, from, next) => {

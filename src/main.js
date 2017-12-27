@@ -1,7 +1,6 @@
 import Vue from "vue";
 import { sync } from "vuex-router-sync";
 import Vuetify from "vuetify";
-import axios from "axios";
 import App from "./App";
 import router from "./router";
 import store from "./store";
@@ -15,8 +14,6 @@ Vue.use(Vuetify, {
 });
 Vue.mixin(titleMixin);
 Vue.config.productionTip = false;
-
-export const axiosBrowser = axios.create({});
 
 export default function createApp() {
     sync(store, router);
