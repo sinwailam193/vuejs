@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import boom from "@/components/boom";
+    import boom from "./boom";
 
     export default {
         name: "test",

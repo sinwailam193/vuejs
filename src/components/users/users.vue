@@ -28,6 +28,7 @@
 
     export default {
         name: "users",
+        title: "Users",
         data() {
             return {
                 newUser: {

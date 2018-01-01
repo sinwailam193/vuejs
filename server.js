@@ -116,6 +116,7 @@ function render(req, res) {
             handleError(err);
         } else {
             res.end(html);
+            console.log(html);
             if (cacheable) {
                 microCache.set(req.url, html);
             }
